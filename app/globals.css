@@ -17,11 +17,12 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+}
+hr{
+  border-color: rgba(211, 211, 211, 0.20);
+}
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
 }
