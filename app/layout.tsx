@@ -7,8 +7,27 @@ import Footer from "./components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://insidevin.com"),
   title: "InsideVin - CAR VIN checker",
   description: "CAR VIN checker",
+  creator: "InsideVin Team",
+  applicationName: "InsideVin",
+  publisher: "InsideVin",
+  authors: [{ name: "InsideVin Team", url: "https://insidevin.com" }],
+  generator: "InsideVin",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://insidevin.com",
+    title: "InsideVin - CAR VIN checker",
+    description: "CAR VIN checker",
+    siteName: "InsideVin - CAR VIN checker",
+    images: [
+      {
+        url: "https://insidevide.com/logo.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
