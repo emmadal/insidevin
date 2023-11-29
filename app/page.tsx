@@ -6,6 +6,7 @@ const PrepareReport = dynamic(
   () => import("./components/Landing/PrepareReport"),
 );
 const Testimonial = dynamic(() => import("./components/Landing/Testimonial"));
+const Faq = dynamic(() => import("./components/Landing/Faq"));
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <WhyInside />
       <PrepareReport />
       <Testimonial />
+      <Faq />
     </main>
   );
 }
