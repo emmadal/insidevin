@@ -1,0 +1,8 @@
+.sideCar {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+}
