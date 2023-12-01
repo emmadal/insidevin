@@ -38,7 +38,7 @@ const SubmitForm = memo(function SubmitForm() {
 
 const SearchVin = () => {
   const [open, setOpen] = useState(false);
-  const [message, formAction] = useFormState(searchVin, null);
+  const [response, formAction] = useFormState(searchVin, null);
   const ref = useRef<HTMLFormElement>(null);
   return (
     <div className="mt-10 md:mt-10">
@@ -58,7 +58,9 @@ const SearchVin = () => {
         />
         <SubmitForm />
       </form>
-      <p className="text-red-500 font-semibold text-justify my-1">{message}</p>
+      <p className="text-red-500 font-semibold text-justify my-1">
+        {response?.message}
+      </p>
       <div className="flex flex-row flex-wrap items-center justify-between mt-4 font-normal underline text-sm pb-10">
         <Link
           href=""

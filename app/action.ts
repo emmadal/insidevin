@@ -1,6 +1,4 @@
 "use server";
-
-import { revalidatePath } from "next/cache";
 import { vinSchema } from "./schema";
 
 export const getInTouchForm = (formData: FormData) => {
@@ -14,7 +12,7 @@ export const searchVin = async (prevState: any, formData: FormData) => {
       vin: formData.get("vin"),
     });
     if (!validation.success) {
-      return validation.error.errors[0].message;
+      return { message: validation.error.errors[0].message };
     }
     const response = await fetch(
       `https://api.vehicledatabases.com/report/${validation.data.vin}`,
@@ -27,12 +25,10 @@ export const searchVin = async (prevState: any, formData: FormData) => {
     );
     if (response.ok) {
       const reports = await response.json();
-      revalidatePath("/");
-      return reports;
+      console.log(reports);
     }
-    revalidatePath("/");
-    return "VIN not found";
+    return { message: "VIN not found" };
   } catch (error) {
-    return "No data available";
+    return { message: "No data available" };
   }
 };
