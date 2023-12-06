@@ -102,7 +102,7 @@ const NavBar = () => {
             </Link>
             <Link
               href="/login"
-              className="font-sans text-base rounded-full py-2 px-7 md:ml-10 bg-green-250"
+              className="font-sans text-base rounded-full py-2 px-7 md:ml-10 bg-green-250 transition-colors duration-300 ease-in-out hover:bg-white"
               onClick={() => setNavbar(false)}
             >
               Login

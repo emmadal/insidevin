@@ -9,7 +9,7 @@ const SubmitButton = ({ text }: { text: string }) => {
     <button
       type="submit"
       disabled={pending}
-      className="bg-green-250 rounded-full font-semibold items-center w-full py-2.5 inline-flex justify-center text-white my-3 disabled:bg-neutral-300 disabled:bg-slate-20"
+      className="bg-green-250 rounded-full font-semibold items-center w-full py-2.5 inline-flex justify-center text-white my-3 disabled:bg-neutral-300 disabled:bg-slate-20 transition-colors duration-300 ease-in-out hover:text-white hover:bg-green-1000"
       aria-disabled={pending}
     >
       {pending ? <Spinner /> : text}
