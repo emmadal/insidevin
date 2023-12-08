@@ -116,13 +116,13 @@ const NavBar = () => {
               </button>
             ) : (
               <button
-                className="font-sans text-base rounded-full py-1.5 px-7 md:ml-10 bg-white transition-colors duration-300 ease-in-out hover:bg-green-250"
+                className="font-sans text-sm rounded-full py-1.5 px-7 md:ml-10 bg-white transition-colors duration-300 ease-in-out hover:bg-green-250"
                 onClick={() => {
                   setNavbar(false);
-                  signOut({ callbackUrl: "/" });
+                  router.push("/dashboard");
                 }}
               >
-                Log out
+                Dashboard
               </button>
             )}
           </div>

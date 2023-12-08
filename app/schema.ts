@@ -19,13 +19,11 @@ export const userSchema = z
       .string()
       .min(3, "« first name	» min length must contain 3 characters")
       .max(20, "« first name	» max length must contain 20 characters")
-      .toLowerCase()
       .trim(),
     surname: z
       .string()
       .min(3, "« surname	» min length must contain 3 characters")
       .max(20, "« surname	» max length must contain 20 characters")
-      .toLowerCase()
       .trim(),
     password: z
       .string()
