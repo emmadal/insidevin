@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import GoogleButton from "@/app/components/GoogleButton";
 import FacebookButton from "@/app/components/FacebookButton";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]";
 import { redirect } from "next/navigation";
 import RegisterForm from "./form";
 import { getServerSession } from "next-auth";
