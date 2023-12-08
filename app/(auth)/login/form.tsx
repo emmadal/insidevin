@@ -27,7 +27,7 @@ const LoginForm = () => {
       return;
     }
     setLoading(false);
-    router.replace(res?.url!);
+    router.push(res?.url!);
   };
 
   return (

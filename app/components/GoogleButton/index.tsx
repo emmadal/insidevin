@@ -17,7 +17,7 @@ const GoogleButton = ({ label, ...props }: IPropsIButtonProps) => {
       callbackUrl: "/dashboard/",
     });
     if (!res?.ok) return;
-    router.replace(res?.url!);
+    router.push(res?.url!);
   };
   return (
     <button

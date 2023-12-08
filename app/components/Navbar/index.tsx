@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const NavBar = () => {
@@ -115,15 +115,13 @@ const NavBar = () => {
                 Login
               </button>
             ) : (
-              <button
+              <Link
+                href="/dashboard"
                 className="font-sans text-sm rounded-full py-1.5 px-7 md:ml-10 bg-white transition-colors duration-300 ease-in-out hover:bg-green-250"
-                onClick={() => {
-                  setNavbar(false);
-                  router.push("/dashboard");
-                }}
+                onClick={() => setNavbar(false)}
               >
                 Dashboard
-              </button>
+              </Link>
             )}
           </div>
         </div>
