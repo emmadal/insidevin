@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TopScroll from "./components/TopScroll";
+import AuthProvider from "./session-provider/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,12 +40,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <NavBar />
-        <div>
-          {children}
-          <TopScroll />
-        </div>
-        <Footer />
+        <AuthProvider>
+          <NavBar />
+          <div>
+            {children}
+            <TopScroll />
+          </div>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

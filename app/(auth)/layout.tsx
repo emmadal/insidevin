@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function AuthLayout({
   children,
@@ -7,25 +7,18 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-1 place-content-center min-h-screen pt-20">
-      {children}
-      <div className="text-center my-10">
-        <p className=" text-gray-500 text-sm">
-          {" "}
-          This site is protected by reCAPTCHA and the Google{" "}
-          <Link href="/privacy-policy" className="underline">
-            Privacy Policy
-          </Link>{" "}
-          and{" "}
-          <Link href="/terms" className="underline">
-            Terms of Service
-          </Link>{" "}
-          apply.
-        </p>
-        <p className="text-gray-500 text-sm">
-          © {new Date().getFullYear()} InsideVin. All rights reserved.
-        </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-3 place-content-center min-h-screen pt-20 bg-green-1000 place-items-center">
+      <div className="hidden md:block">
+        <Image
+          src="/amico.svg"
+          alt="amico"
+          priority
+          sizes="100vw"
+          height={400}
+          width={400}
+        />
       </div>
+      <div className="mb-10">{children}</div>
     </div>
   );
 }
