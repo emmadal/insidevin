@@ -2,10 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const [navbar, setNavbar] = useState(false);
   const handleNavbar = () => setNavbar(!navbar);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const handleWindowSize = () => {
     const size = window.innerWidth;
@@ -100,13 +104,27 @@ const NavBar = () => {
             >
               Contact Us
             </Link>
-            <Link
-              href="/login"
-              className="font-sans text-base rounded-full py-2 px-7 md:ml-10 bg-green-250 transition-colors duration-300 ease-in-out hover:bg-white"
-              onClick={() => setNavbar(false)}
-            >
-              Login
-            </Link>
+            {!session?.user ? (
+              <button
+                className="font-sans text-base rounded-full py-1.5 px-7 md:ml-10 bg-green-250 transition-colors duration-300 ease-in-out hover:bg-white"
+                onClick={() => {
+                  setNavbar(false);
+                  router.push("/login");
+                }}
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                className="font-sans text-base rounded-full py-1.5 px-7 md:ml-10 bg-white transition-colors duration-300 ease-in-out hover:bg-green-250"
+                onClick={() => {
+                  setNavbar(false);
+                  signOut({ callbackUrl: "/" });
+                }}
+              >
+                Log out
+              </button>
+            )}
           </div>
         </div>
       </div>
