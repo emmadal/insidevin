@@ -1,10 +1,22 @@
 "use client";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
-const FacebookButton = ({ label, type }: { label: string; type: string }) => {
+interface IPropsIButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  label: string;
+}
+
+const FacebookButton = ({ label, ...props }: IPropsIButtonProps) => {
   return (
-    <button className="bg-blue-500 rounded-full font-semibold items-center w-full py-2.5 hover:bg-blue-600 inline-flex justify-center text-white my-3">
+    <button
+      className="bg-blue-500 rounded-full font-semibold items-center w-full py-2.5 hover:bg-blue-600 inline-flex justify-center text-white my-3"
+      {...props}
+      onClick={() =>
+        signIn('facebook', { redirect: true, callbackUrl: "/dashboard/" })
+      }
+    >
       <Image
         alt="facebook"
         src="/facebook_login.svg"
