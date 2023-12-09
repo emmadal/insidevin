@@ -5,6 +5,8 @@ import NavBar from "./components/Navbar";
 import Footer from "./components/Footer";
 import TopScroll from "./components/TopScroll";
 import AuthProvider from "./session-provider/provider";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authoptions";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,15 +34,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <AuthProvider>
+        <AuthProvider session={session}>
           <NavBar />
           <div>
             {children}

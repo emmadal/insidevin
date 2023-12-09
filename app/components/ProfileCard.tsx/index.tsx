@@ -6,8 +6,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import LogoutButton from "./logout-button";
+import { authOptions } from "@/lib/authoptions";
 
 const ProfileCard = async () => {
   const session = await getServerSession(authOptions);

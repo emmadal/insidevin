@@ -5,8 +5,8 @@ import GoogleButton from "@/app/components/GoogleButton";
 import FacebookButton from "@/app/components/FacebookButton";
 import LoginForm from "./form";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { authOptions } from "@/lib/authoptions";
 
 const LoginPage = async () => {
   // check if user is authenticated
