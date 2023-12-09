@@ -52,7 +52,7 @@ const LoginForm = () => {
           disabled={loading}
           onClick={async (e) => {
             e.preventDefault();
-            handleSubmit();
+            await handleSubmit();
           }}
         />
       </form>

@@ -3,13 +3,12 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { cert } from "firebase-admin/app";
-import { auth, firestore } from "firebase-admin";
+import { firestore } from "firebase-admin";
 import {
   signInWithEmailAndPassword,
   getAuth as getAuthClient,
 } from "firebase/auth";
-import { app, db } from "@/firebase";
+import { app } from "@/firebase";
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -33,19 +32,20 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req): Promise<any> {
         if (!credentials?.email || !credentials?.password) return null;
-        const res = await signInWithEmailAndPassword(
-          getAuthClient(),
-          credentials.email,
-          credentials.password,
-        );
-        if (!res.user.uid) return null;
-        const doc = await (
-          await firestore()
-            .collection("users")
-            .where("email", "==", credentials?.email)
-            .get()
-        ).docs[0].data();
-        if (doc) return doc;
+        const docRef = await firestore()
+          .collection("users")
+          .where("email", "==", credentials.email);
+        const query = await (await docRef.get()).docs;
+        const user = query[0].data();
+        if (user) {
+          const res = await signInWithEmailAndPassword(
+            getAuthClient(),
+            credentials.email,
+            credentials.password,
+          );
+          if (!res.user.uid) return null;
+          return user;
+        }
         return null;
       },
     }),
@@ -58,6 +58,30 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async jwt({ token, user, profile }) {
+      if (user) {
+        return {
+          ...token,
+          ...user,
+          emailVerified: profile?.email_verified! || false,
+        };
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // pass user id and emailVerified to session
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          emailVerified: token?.emailVerified,
+          id: token?.id,
+        },
+      };
+    },
+  },
   session: {
     strategy: "jwt",
   },
