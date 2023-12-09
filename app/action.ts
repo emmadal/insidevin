@@ -2,7 +2,7 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { vinSchema, userSchema } from "./schema";
 import { addDoc, collection } from "firebase/firestore";
-import { app, db } from "@/firebase";
+import { app, db } from "@/app/firebase";
 import { firestore } from "firebase-admin";
 
 export const getInTouchForm = (formData: FormData) => {

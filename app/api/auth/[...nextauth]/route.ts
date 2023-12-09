@@ -8,7 +8,7 @@ import {
   signInWithEmailAndPassword,
   getAuth as getAuthClient,
 } from "firebase/auth";
-import { app } from "@/firebase";
+import { app } from "@/app/firebase";
 
 export const authOptions: NextAuthOptions = {
   pages: {
