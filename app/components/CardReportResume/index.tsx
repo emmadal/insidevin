@@ -18,7 +18,7 @@ interface IPropsCar {
 }
 const CardReportResume = async (props: IPropsCar) => {
   return (
-    <Card className="w-[320px] overflow-auto">
+    <Card className="w-[300px] overflow-auto mx-auto md:mx-0">
       <CardHeader>
         <CardTitle>{props.brand}</CardTitle>
         <CardDescription>VIN #{props.vin}</CardDescription>

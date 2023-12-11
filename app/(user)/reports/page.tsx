@@ -1,8 +1,10 @@
 import React from "react";
-import TextInput from "@/app/components/TextInput";
 import Image from "next/image";
-import SubmitButton from "@/app/components/FormButton";
 import CardReportResume from "@/app/components/CardReportResume";
+import CardReportFull from "@/app/components/CardReportFull";
+import SubmitButton from "@/app/components/FormButton";
+import TextInput from "@/app/components/TextInput";
+import { reportForm } from "@/app/action";
 
 const ReportsPage = () => {
   return (
@@ -13,8 +15,8 @@ const ReportsPage = () => {
         </p>
       </div>
       <div className="md:mt-14 mt-6">
-        <div className="md:grid grid-cols-2 gap-8">
-          <div className="mt-10">
+        <div className="md:grid grid-cols-2 gap-8 items-center mb-10">
+          <div>
             <Image
               src="/car.webp"
               alt="car image"
@@ -24,13 +26,13 @@ const ReportsPage = () => {
               width={500}
             />
           </div>
-          <div className="w-[350px] mx-auto border-gray-300 border-solid border p-5 my-8">
+          <div className="w-[300px] border-gray-300 border-solid border p-5 mx-auto md:mx-0 md:place-self-end rounded-md">
             <p className="text-base font-semibold">Purchase Report</p>
-            <div className="flex flex-row flex-wrap items-center justify-between border-green-250 rounded-md border-2 border-solid p-2.5 my-7">
+            <div className="flex flex-row flex-wrap items-center justify-between border-green-250 rounded-md border-2 border-solid p-2.5 my-7 bg-green-100">
               <p>1 Report</p>
               <p className="text-green-250 font-semibold">$15.99</p>
             </div>
-            <form action="">
+            <form action={reportForm}>
               <TextInput name="email" label="Email" type="email" />
               <div className="flex flex-row items-center space-x-2">
                 <TextInput
@@ -47,8 +49,13 @@ const ReportsPage = () => {
           </div>
         </div>
 
-        <div>
-          <CardReportResume />
+        <div className="md:grid grid-cols-3 gap-5 space-y-10 md:space-y-0">
+          <div>
+            <CardReportResume />
+          </div>
+          <div className="col-span-2">
+            <CardReportFull />
+          </div>
         </div>
       </div>
     </div>

@@ -86,3 +86,7 @@ export const createUser = async (prevState: any, formData: FormData) => {
     return { message: "User registration failed. Try later" };
   }
 };
+
+export const reportForm = (formData: FormData) => {
+  console.log(formData.get("email"));
+};
