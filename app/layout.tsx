@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "InsideVin - CAR VIN checker",
     images: [
       {
-        url: "https://insidevide.com/logo.png",
+        url: "https://insidevin.com/logo.png",
       },
     ],
   },
