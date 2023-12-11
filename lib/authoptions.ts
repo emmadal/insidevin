@@ -19,7 +19,6 @@ export const authOptions: NextAuthOptions = {
       privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
     }),
   }),
-  // adapter: FirestoreAdapter(app),
   providers: [
     CredentialsProvider({
       name: "Credentials",
