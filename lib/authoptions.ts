@@ -3,26 +3,23 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+import { cert } from "firebase-admin/app";
+import * as bcrypt from "bcrypt";
 import { firestore } from "firebase-admin";
-import {
-  signInWithEmailAndPassword,
-  getAuth as getAuthClient,
-} from "firebase/auth";
-import { app } from "@/app/firebase";
 
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
     signOut: "/",
   },
-  // adapter: FirestoreAdapter({
-  //   credential: cert({
-  //     projectId: process.env.FIREBASE_PROJECT_ID,
-  //     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-  //     privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
-  //   }),
-  // }),
-  adapter: FirestoreAdapter(app),
+  adapter: FirestoreAdapter({
+    credential: cert({
+      projectId: process.env.FIREBASE_PROJECT_ID,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
+    }),
+  }),
+  // adapter: FirestoreAdapter(app),
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -32,19 +29,20 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req): Promise<any> {
         if (!credentials?.email || !credentials?.password) return null;
+        // search if an user exist with the email
         const docRef = await firestore()
           .collection("users")
           .where("email", "==", credentials.email);
         const query = await (await docRef.get()).docs;
         const user = query[0].data();
         if (user) {
-          const res = await signInWithEmailAndPassword(
-            getAuthClient(),
-            credentials.email,
+          // check if password matches
+          const result = await bcrypt.compare(
             credentials.password,
+            user?.password,
           );
-          if (!res.user.uid) return null;
-          return user;
+          if (result) return user; // return user object if password matches
+          return null;
         }
         return null;
       },
@@ -60,7 +58,7 @@ export const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user, profile }) {
+    async jwt({ token, user }) {
       if (user) {
         return {
           ...token,

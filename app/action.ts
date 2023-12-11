@@ -1,9 +1,8 @@
 "use server";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { vinSchema, userSchema } from "./schema";
-import { addDoc, collection } from "firebase/firestore";
-import { app, db } from "@/app/firebase";
+import { v4 as uuidv4 } from "uuid";
 import { firestore } from "firebase-admin";
+import * as bcrypt from "bcrypt";
 
 export const getInTouchForm = (formData: FormData) => {
   const email = formData.get("email");
@@ -61,26 +60,29 @@ export const createUser = async (prevState: any, formData: FormData) => {
     }
 
     // create a new user
-    const new_user = await createUserWithEmailAndPassword(
-      getAuth(app),
-      validation.data.email,
+    const hashedPassword = await bcrypt.hash(
       validation.data.confirm_password,
+      10,
     );
-    if (new_user.user.uid) {
-      await addDoc(collection(db, "users"), {
+    const new_user = await firestore()
+      .collection("users")
+      .add({
         email: validation.data.email,
         name: `${validation.data.first_name} ${validation.data.surname}`,
-        emailVerified: new_user.user.emailVerified,
-        image: new_user.user.photoURL,
-        id: new_user.user.uid,
+        emailVerified: false,
+        image: null,
+        password: hashedPassword,
+        id: uuidv4(),
       });
+    if (new_user.id) {
       return {
         success: true,
         message: "Account created with success. You will be redirect on login",
       };
     }
-    return { message: "User registration failed. Try later" };
-  } catch (error) {
     return { message: "Email or password already used" };
+  } catch (error) {
+    console.log(error);
+    return { message: "User registration failed. Try later" };
   }
 };
