@@ -7,6 +7,10 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import Image from "next/image";
+import trim from '@/public/trim.svg'
+import engine from "@/public/engine.svg";
+import style from "@/public/style.svg";
+import msrp from "@/public/msrp.svg";
 
 interface IPropsCar {
   vin?: string;
@@ -25,14 +29,14 @@ const CardReportResume = async (props: IPropsCar) => {
       </CardHeader>
       <CardContent>
         <div className="flex flex-row items-center flex-wrap my-3 space-x-3">
-          <Image src="/trim.svg" alt="trim" height={25} width={25} />
+          <Image src={trim} alt="trim" />
           <span className="text-gray-500 inline-flex items-center">
             Trim: <p className="font-semibold text-sm ml-3">{props.trim}</p>
           </span>
         </div>
         <hr />
         <div className="flex flex-row items-center flex-wrap my-3 space-x-3">
-          <Image src="/engine.svg" alt="engine" height={25} width={25} />
+          <Image src={engine} alt="engine" />
           <span className="text-gray-500 inline-flex items-center">
             Engine:{" "}
             <p className="font-semibold text-sm text-black ml-3">
@@ -42,7 +46,7 @@ const CardReportResume = async (props: IPropsCar) => {
         </div>
         <hr />
         <div className="flex flex-row items-center flex-wrap my-3 space-x-3">
-          <Image src="/style.svg" alt="style" height={25} width={25} />
+          <Image src={style} alt="style" />
           <span className="text-gray-500 inline-flex items-center">
             Style:{" "}
             <p className="font-semibold text-black ml-3">{props.style}</p>
@@ -50,7 +54,7 @@ const CardReportResume = async (props: IPropsCar) => {
         </div>
         <hr />
         <div className="flex flex-row items-center flex-wrap my-3 space-x-3">
-          <Image src="/msrp.svg" alt="msrp" height={25} width={25} />
+          <Image src={msrp} alt="msrp" />
           <span className="text-gray-500 inline-flex items-center">
             MRSP: <p className="font-semibold text-black ml-3">{props.msrp}</p>
           </span>

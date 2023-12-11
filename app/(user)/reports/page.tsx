@@ -5,6 +5,7 @@ import CardReportFull from "@/app/components/CardReportFull";
 import SubmitButton from "@/app/components/FormButton";
 import TextInput from "@/app/components/TextInput";
 import { reportForm } from "@/app/action";
+import carImage from "@/public/car.png";
 
 const ReportsPage = () => {
   return (
@@ -18,12 +19,10 @@ const ReportsPage = () => {
         <div className="md:grid grid-cols-2 gap-8 items-center mb-10">
           <div>
             <Image
-              src="/car.webp"
+              src={carImage}
               alt="car image"
-              priority
               sizes="100vw"
-              height={500}
-              width={500}
+              className="w-full h-auto"
             />
           </div>
           <div className="w-[300px] border-gray-300 border-solid border p-5 mx-auto md:mx-0 md:place-self-end rounded-md">
@@ -49,7 +48,7 @@ const ReportsPage = () => {
           </div>
         </div>
 
-        <div className="md:grid grid-cols-3 gap-5 space-y-10 md:space-y-0">
+        <div className="md:grid grid-cols-3 space-x-10 md:space-x-5 gap-5 space-y-10 md:space-y-0">
           <div>
             <CardReportResume />
           </div>

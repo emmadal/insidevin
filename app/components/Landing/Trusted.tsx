@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-
+import woman2 from "@/public/woman2.svg"
 const Trusted = () => {
   return (
     <div>
