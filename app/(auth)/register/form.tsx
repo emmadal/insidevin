@@ -36,7 +36,7 @@ const RegisterForm = () => {
             name="check"
             defaultChecked={checked}
             onChange={(e) => setChecked(e.target.checked)}
-            className="checked:bg-blue-600 h-4 w-4 rounded-full"
+            className="checked:bg-blue-600 h-4 w-4 rounded-full accent-green-250"
           />
           <span className="font-normal text-base">
             I agree{" "}
