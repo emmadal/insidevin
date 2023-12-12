@@ -7,12 +7,15 @@ import TextInput from "@/app/components/TextInput";
 import { reportForm } from "@/app/action";
 import carImage from "@/public/car.png";
 
-const ReportsPage = () => {
+interface Props {
+  params: { vin: string };
+}
+const ReportsPage = ({ params: { vin } }: Props) => {
   return (
     <div>
       <div>
         <p className="text-lg font-bold">
-          Purchase Full History Report for VIN: 56UK78GG778JIO0SGS
+          Purchase Full History Report for VIN: {vin}
         </p>
       </div>
       <div className="md:mt-14 mt-6">
@@ -48,11 +51,11 @@ const ReportsPage = () => {
           </div>
         </div>
 
-        <div className="md:grid grid-cols-3 space-x-10 md:space-x-5 gap-5 space-y-10 md:space-y-0">
+        <div className="md:grid grid-cols-3 gap-5 space-y-10 md:space-y-0">
           <div>
             <CardReportResume />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 w-full">
             <CardReportFull />
           </div>
         </div>
