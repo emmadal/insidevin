@@ -42,3 +42,7 @@ export const userSchema = z
   .refine((data) => data.password === data.confirm_password, {
     message: "Passwords don't match",
   });
+
+export const EmailValidation = z.object({
+  email: z.string().email().trim(),
+});
