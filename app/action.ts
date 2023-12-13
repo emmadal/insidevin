@@ -1,5 +1,10 @@
 "use server";
-import { vinSchema, userSchema, EmailValidation } from "./schema";
+import {
+  vinSchema,
+  userSchema,
+  EmailValidation,
+  passwordSchema,
+} from "./schema";
 import { v4 as uuidv4 } from "uuid";
 import { render } from "@react-email/render";
 import { firestore } from "firebase-admin";
@@ -17,6 +22,21 @@ export const searchUserByEmail = async (email: string) => {
     await firestore().collection("users").where("email", "==", email).get()
   ).docs[0]?.data();
   if (user) return user;
+  return false;
+};
+
+/**
+ * Get document ID
+ */
+export const getDocumentId = async (
+  collectionName: string,
+  key: string,
+  value: any,
+) => {
+  const docRef = await (
+    await firestore().collection(collectionName).where(key, "==", value).get()
+  ).docs[0].id;
+  if (docRef) return docRef;
   return false;
 };
 
@@ -144,4 +164,69 @@ export const sendResetPasswordLink = async (
     html: render(ResetPasswordTemplate({ link })),
   });
   return { status: true, message: "Magic link to reset password sent" };
+};
+
+/**
+ * Check link for reset password
+ */
+export const checkResetPasswordLink = (token: string) => {
+  interface Response {
+    status: boolean;
+    message: string;
+    payload?: any;
+  }
+  let response!: Response;
+  jwt.verify(token, process.env.NEXTAUTH_SECRET!, (err, decoded) => {
+    if (err) {
+      response = {
+        status: false,
+        message:
+          "Invalid or expired link. Please request a new one to reset your password",
+      };
+    } else {
+      const value = jwt.decode(token, {
+        complete: true,
+      });
+      response = {
+        status: true,
+        message: "valid link",
+        payload: value?.payload,
+      };
+    }
+  });
+  return response;
+};
+
+/**
+ * Update user password
+ */
+export const updateUserPassword = async (
+  prevState: any,
+  formData: FormData,
+) => {
+  const validation = passwordSchema.safeParse({
+    password: formData.get("password"),
+    confirm_password: formData.get("confirm_password"),
+  });
+  if (!validation.success) {
+    return { status: false, message: validation.error.errors[0].message };
+  }
+  const email = formData.get("email") as string;
+  const newPassword = formData.get("password") as string;
+
+  const [user, docRef] = await Promise.all([
+    searchUserByEmail(email),
+    getDocumentId("users", "email", email),
+  ]);
+  if (user && docRef) {
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await firestore().collection("users").doc(docRef).update({
+      password: hashedPassword,
+    });
+    return {
+      status: true,
+      message: "Password reset. You will be redirect in few seconds",
+    };
+  }
+  return { status: false, message: "Unable to reset your password. Try later" };
 };

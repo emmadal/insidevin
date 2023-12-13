@@ -46,3 +46,23 @@ export const userSchema = z
 export const EmailValidation = z.object({
   email: z.string().email().trim(),
 });
+
+export const passwordSchema = z
+  .object({
+    password: z
+      .string()
+      .regex(
+        new RegExp(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/),
+        "password should contain: at least one digit, at least one lower case, at least one uppercase case, at least 6 from the mentioned characters, at least one special characters",
+      )
+      .trim(),
+    confirm_password: z
+      .string()
+      .regex(
+        new RegExp(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/),
+        "password should contain: at least one digit, at least one lower case, at least one uppercase case, at least 6 from the mentioned characters, at least one special characters",
+      ),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Passwords don't match",
+  });
