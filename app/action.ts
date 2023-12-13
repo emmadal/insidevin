@@ -3,37 +3,40 @@ import { vinSchema, userSchema } from "./schema";
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "firebase-admin";
 import * as bcrypt from "bcrypt";
+import { revalidateTag } from "next/cache";
 
 export const getInTouchForm = (formData: FormData) => {
   const email = formData.get("email");
   console.log(email);
 };
 
+/**
+ * Search Vin car
+ */
 export const searchVin = async (prevState: any, formData: FormData) => {
-  try {
-    const validation = vinSchema.safeParse({
-      vin: formData.get("vin"),
-    });
-    if (!validation.success) {
-      return { message: validation.error.errors[0].message };
-    }
-    const response = await fetch(
-      `https://api.vehicledatabases.com/report/${validation.data.vin}`,
-      {
-        cache: "no-store",
-        headers: new Headers({
-          "x-AuthKey": process.env.VEHICLE_API_KEY!,
-        }),
-      },
-    );
-    if (response.ok) {
-      const reports = await response.json();
-      console.log(reports);
-    }
-    return { message: "VIN not found" };
-  } catch (error) {
-    return { message: "No data available" };
+  const validation = vinSchema.safeParse({
+    vin: formData.get("vin"),
+  });
+  if (!validation.success) {
+    return { message: validation.error.errors[0].message };
   }
+  const response = await fetch(
+    `https://api.vehicledatabases.com/report/${validation.data.vin}`,
+    {
+      method: "GET",
+      cache: "no-store",
+      headers: new Headers({
+        "x-AuthKey": process.env.VEHICLE_API_KEY!,
+      }),
+      next: { tags: ["vin"] },
+    },
+  );
+  if (response.ok) {
+    const data = await response.json();
+    revalidateTag("vin");
+    return { status: true, vin: validation.data.vin, data };
+  }
+  return { status: false, message: "No data available" };
 };
 
 export const createUser = async (prevState: any, formData: FormData) => {
