@@ -10,7 +10,6 @@ interface IPropsIButtonProps
 const SubmitButton = forwardRef<HTMLFormElement, IPropsIButtonProps>(
   ({ label, ...props }, ref) => {
     const { pending } = useFormStatus();
-    ref?.current?.reset();
     return (
       <button
         {...props}
