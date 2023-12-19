@@ -32,3 +32,11 @@ export type VehicleRecordType = {
   theft: string;
   recall: string;
 };
+
+export type VehicleOwnerShipType = {
+  id?: number;
+  purchased_on: string;
+  located_in: string;
+  owned_from: string;
+  duration: string;
+};

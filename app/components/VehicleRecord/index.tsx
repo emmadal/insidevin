@@ -4,7 +4,6 @@ import Image from "next/image";
 import { VehicleRecordType } from "@/app/types";
 
 const VehicleRecord = ({ data }: { data: VehicleRecordType }) => {
-  const bgColor = Object.values(data).includes("has no") ? "" : "bg-red-300";
   return (
     <div className="w-full">
       <div className="grid grid-cols-4 md:gap-8 mt-20 md:space-x-3">

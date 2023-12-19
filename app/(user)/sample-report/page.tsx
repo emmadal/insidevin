@@ -5,6 +5,10 @@ import { vehicle_record } from "@/app/constants/vehicle_record";
 import VehicleSummary from "@/app/components/VehicleSummary";
 import VehicleReport from "@/app/components/VehicleReport";
 import VehicleRecord from "@/app/components/VehicleRecord";
+import VehicleUsage from "@/app/components/VehicleUsage";
+import VehicleOwnership from "@/app/components/VehicleOwnership";
+import VehicleSaleHistory from "@/app/components/VehicleSaleHistory";
+import { vehicle_ownership } from "@/app/constants/vehicle_ownership";
 
 const SampleReport = () => {
   return (
@@ -27,6 +31,9 @@ const SampleReport = () => {
             vin="2T1BURHE0FC320645"
           />
           <VehicleRecord data={vehicle_record} />
+          <VehicleUsage />
+          <VehicleOwnership data={vehicle_ownership} />
+          <VehicleSaleHistory />
         </div>
         <div>
           <VehicleSummary />
