@@ -10,7 +10,7 @@ async function getData(): Promise<Report[]> {
 const DashboardPage = async () => {
   const data = await getData();
   return (
-    <div className="md:grid grid-cols-4 gap-3 mt-20 space-x-3">
+    <div className="md:grid grid-cols-4 gap-3 space-x-3">
       <div className="col-span-3">
         <div>
           <p className="font-bold text-xl">Dashboard</p>

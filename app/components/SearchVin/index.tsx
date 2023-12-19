@@ -72,7 +72,7 @@ const SearchVin = () => {
         >
           Where to find VIN?
         </Link>
-        <Link href="" className="text-normal text-blue-500">
+        <Link href="/sample-report" className="text-normal text-blue-500">
           View Sample Report
         </Link>
       </div>
