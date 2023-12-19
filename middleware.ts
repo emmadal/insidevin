@@ -4,5 +4,5 @@ export const config = {
   // +: one or more parameters
   // ?: zero or one parameter
   // {param}: one parameter
-  matcher: ["/dashboard/:path*", "/reports/:path*", "/sample-report/:path*"],
+  matcher: ["/dashboard/:path*", "/reports/:path*"],
 };
