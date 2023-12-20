@@ -32,6 +32,18 @@ export type VehicleRecordType = {
   theft: string;
   recall: string;
 };
+export type VehicleTitleBrandType = {
+  fire_brand: string;
+  hail_brand: string;
+  flood_brand: string;
+  junk_brand: string;
+  manufacturer: string;
+  lemon_brand: string;
+  salvage_brand: string;
+  rebuilt_brand: string;
+  odemeter_brand: string;
+  auction_brand: string;
+};
 
 export type VehicleOwnerShipType = {
   id?: number;
@@ -39,4 +51,34 @@ export type VehicleOwnerShipType = {
   located_in: string;
   owned_from: string;
   duration: string;
+};
+
+export type VehicleMileageType = {
+  id?: number;
+  date: string;
+  mileage: string;
+};
+
+export type VehicleInformationType = {
+  odometer: string;
+  condition: string;
+  primary_damage: string;
+  secondary_damage: string;
+  exterior_color: string;
+  repair_cost: number;
+};
+
+export type VehicleConditionType = {
+  seller_type: string;
+  sales_document: string;
+  primary_damage: string;
+  secondary_damage: string;
+  exterior_color: string;
+  repair_cost: number;
+};
+
+export type VehicleAccidentType = {
+  id?: number;
+  reported: string;
+  located?: string;
 };
