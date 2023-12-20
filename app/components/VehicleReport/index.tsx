@@ -1,7 +1,4 @@
 import React from "react";
-import clipboard from "@/public/clipboard-black.svg";
-import Image from "next/image";
-import { summary } from "@/app/constants/vehicle_summary";
 import { VehicleReportType } from "@/app/types";
 
 const VehicleReport = ({

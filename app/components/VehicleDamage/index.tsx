@@ -1,9 +1,9 @@
 import React from "react";
 import clipboard from "@/public/clipboard-black.svg";
 import Image from "next/image";
-import { VehicleTitleBrandType } from "@/app/types";
+import { VehicleDamageType } from "@/app/types";
 
-const VehicleBrandCheck = ({ data }: { data: VehicleTitleBrandType[] }) => {
+const VehicleDamage = ({ data }: { data: VehicleDamageType[] }) => {
   return (
     <div className="w-full mt-10">
       <div className="grid grid-cols-4 md:gap-8 md:space-x-3">
@@ -15,11 +15,11 @@ const VehicleBrandCheck = ({ data }: { data: VehicleTitleBrandType[] }) => {
               className="mr-2 h-6 w-6"
               sizes="100vw"
             />
-            Title Brand Check
+            Damage Verification
           </div>
         </div>
         <div className="bg-teal-100 rounded-md p-1 flex flex-col justify-center text-center">
-          {data.filter((i) => i.isrecord === true).length} record(s) found
+          {data.filter(i => i.isrecord === true).length} record(s) found
         </div>
       </div>
       <div className="space-y-2 md:space-y-0 md:grid grid-cols-3 gap-4 mt-5">
@@ -49,4 +49,4 @@ const VehicleBrandCheck = ({ data }: { data: VehicleTitleBrandType[] }) => {
   );
 };
 
-export default VehicleBrandCheck;
+export default VehicleDamage;

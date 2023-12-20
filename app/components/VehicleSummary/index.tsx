@@ -2,7 +2,7 @@ import React from "react";
 import clipboard from "@/public/clipboard-black.svg";
 import Whiteclipboard from "@/public/clipboard.svg";
 import Image from "next/image";
-import { summary } from "@/app/constants/vehicle_summary";
+import { summary } from "@/app/constants/vehicle";
 import DownloadReport from "../DownloadReport";
 import facebook from "@/public/facebook_solid.svg";
 import twitter from "@/public/twitter_solid.svg";

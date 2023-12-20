@@ -1,7 +1,7 @@
 import React from "react";
 import clipboard from "@/public/clipboard-black.svg";
 import Image from "next/image";
-import { VehicleAccidentType, VehicleMileageType } from "@/app/types";
+import { VehicleAccidentType } from "@/app/types";
 
 interface Props {
   data: VehicleAccidentType[];

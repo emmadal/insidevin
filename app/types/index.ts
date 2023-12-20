@@ -1,10 +1,11 @@
 export type Summary = {
-  id: string;
+  id?: number | string;
   name: string;
   last?: boolean;
 };
 
 export type VehicleReportType = {
+  id?: number | string;
   trim: string;
   engine: string;
   fuel_type: string;
@@ -21,32 +22,20 @@ export type VehicleReportType = {
 };
 
 export type VehicleRecordType = {
-  title_brand: string;
-  odometer: string;
-  accident: string;
-  damage: string;
-  event: string;
-  service_repair: string;
-  auction: string;
-  lien_loan: string;
-  theft: string;
-  recall: string;
+  id?: number | string;
+  title: string;
+  description: string;
+  isrecord?: boolean;
 };
 export type VehicleTitleBrandType = {
-  fire_brand: string;
-  hail_brand: string;
-  flood_brand: string;
-  junk_brand: string;
-  manufacturer: string;
-  lemon_brand: string;
-  salvage_brand: string;
-  rebuilt_brand: string;
-  odemeter_brand: string;
-  auction_brand: string;
+  id?: number | string;
+  title: string;
+  description: string;
+  isrecord?: boolean;
 };
 
 export type VehicleOwnerShipType = {
-  id?: number;
+  id?: number | string;
   purchased_on: string;
   located_in: string;
   owned_from: string;
@@ -54,12 +43,13 @@ export type VehicleOwnerShipType = {
 };
 
 export type VehicleMileageType = {
-  id?: number;
+  id?: number | string;
   date: string;
   mileage: string;
 };
 
 export type VehicleInformationType = {
+  id?: number | string;
   odometer: string;
   condition: string;
   primary_damage: string;
@@ -69,6 +59,7 @@ export type VehicleInformationType = {
 };
 
 export type VehicleConditionType = {
+  id?: number | string;
   seller_type: string;
   sales_document: string;
   primary_damage: string;
@@ -78,7 +69,50 @@ export type VehicleConditionType = {
 };
 
 export type VehicleAccidentType = {
-  id?: number;
+  id?: number | string;
   reported: string;
   located?: string;
+};
+
+export type VehicleDamageType = {
+  id?: number | string;
+  title: string;
+  description?: string;
+  isrecord?: boolean;
+};
+
+export type VehicleHistoryType = {
+  id?: number | string;
+  date: string;
+  source: string;
+  location: string;
+  odometer: string;
+  details: string;
+};
+
+export type VehicleRepairCostType = {
+  id?: number | string;
+  title: string;
+  parts: string;
+  labor: string;
+  description: string;
+};
+
+export type VehicleWarrantyType = {
+  id?: number | string;
+  warranty: string;
+  months: string;
+};
+
+export type VehicleEventType = {
+  id?: number | string;
+  title: string;
+  description: string;
+  isrecord?: boolean;
+};
+
+export type VehicleUsageType = {
+  id?: number | string;
+  title: string;
+  isrecord?: boolean;
 };

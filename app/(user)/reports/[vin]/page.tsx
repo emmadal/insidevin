@@ -7,14 +7,10 @@ import TextInput from "@/app/components/TextInput";
 import { reportForm, searchVin } from "@/app/action";
 import carImage from "@/public/car.png";
 import NoData from "@/app/components/NoData";
-
+import ReportLoading from "@/app/components/ReportLoading";
 interface Props {
   params: { vin: string };
 }
-
-const ReportLoading = () => (
-  <div className="h-20 w-20 rounded-full mx-auto border-t-green-1000 border-4 animate-spin"></div>
-);
 
 const ReportsPage = async ({ params: { vin } }: Props) => {
   const formData = new FormData();
