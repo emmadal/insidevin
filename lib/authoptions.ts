@@ -80,5 +80,6 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
+    maxAge: 14400, // expire user session after 4 hours
   },
 };
