@@ -80,23 +80,59 @@ export const vehicle_damage: VehicleDamageType[] = [
   },
 ];
 
-export const vehicle_information: VehicleInformationType = {
-  odometer: "81,352",
-  condition: "RUNS AND DRIVES",
-  primary_damage: "FRONT END",
-  secondary_damage: "REAR END",
-  exterior_color: "SILVER",
-  repair_cost: 13235,
-};
+export const vehicle_information: VehicleInformationType[] = [
+  {
+    title: "Odometer",
+    value: "81,352",
+  },
+  {
+    title: "Condition",
+    value: "RUNS AND DRIVES",
+  },
+  {
+    title: "Primary Damage",
+    value: "FRONT END",
+  },
+  {
+    title: "Secondary Damage",
+    value: "REAR END",
+  },
+  {
+    title: "Exterior Color",
+    value: "SILVER",
+  },
+  {
+    title: "Repair Cost",
+    value: 13235,
+  },
+];
 
-export const vehicle_condition: VehicleConditionType = {
-  seller_type: "Auction",
-  sales_document: "CERT OF TITLE-SALVAGE",
-  primary_damage: "FRONT END",
-  secondary_damage: "REAR END",
-  exterior_color: "SILVER",
-  repair_cost: 13235,
-};
+export const vehicle_condition: VehicleConditionType[] = [
+  {
+    title: "Seller Type",
+    value: "Auction",
+  },
+  {
+    title: "Sales Document",
+    value: "CERT OF TITLE-SALVAGE",
+  },
+  {
+    title: "Primary Damage",
+    value: "FRONT END",
+  },
+  {
+    title: "Secondary Damage",
+    value: "REAR END",
+  },
+  {
+    title: "Exterior Color",
+    value: "SILVER",
+  },
+  {
+    title: "Repair Cost",
+    value: 13235,
+  },
+];
 
 export const vehicle_history: VehicleHistoryType[] = [
   {

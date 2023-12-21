@@ -50,22 +50,14 @@ export type VehicleMileageType = {
 
 export type VehicleInformationType = {
   id?: number | string;
-  odometer: string;
-  condition: string;
-  primary_damage: string;
-  secondary_damage: string;
-  exterior_color: string;
-  repair_cost: number;
+  title: string;
+  value: string | number;
 };
 
 export type VehicleConditionType = {
   id?: number | string;
-  seller_type: string;
-  sales_document: string;
-  primary_damage: string;
-  secondary_damage: string;
-  exterior_color: string;
-  repair_cost: number;
+  title: string;
+  value: string | number;
 };
 
 export type VehicleAccidentType = {

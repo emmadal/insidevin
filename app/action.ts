@@ -56,14 +56,13 @@ export const searchVin = async (prevState: any, formData: FormData) => {
     return { message: validation.error.errors[0].message };
   }
   const response = await fetch(
-    `https://api.vehicledatabases.com/report/${validation.data.vin}`,
+    `https://api.vehicledatabases.com/auction/${validation.data.vin}`,
     {
       method: "GET",
       cache: "no-store",
-      headers: {
-        "Content-Type": "application/json",
+      headers: new Headers({
         "x-AuthKey": process.env.VEHICLE_API_KEY || "",
-      },
+      }),
       next: { tags: ["vin"] },
     },
   );
