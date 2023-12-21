@@ -43,7 +43,7 @@ const VehicleWarranty = ({ data }: Props) => {
         <Table className="border border-black">
           <TableHeader className="bg-teal-100 border-b border-black">
             <TableRow className="text-black text-sm">
-              <TableHead className="text-black text-sm p-3">Warranty</TableHead>
+              <TableHead className="text-black text-sm">Warranty</TableHead>
               <TableHead className="text-black text-sm">Months/Miles</TableHead>
             </TableRow>
           </TableHeader>

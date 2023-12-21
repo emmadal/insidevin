@@ -41,7 +41,7 @@ const VehicleHistory = ({ data }: Props) => {
         <Table className="border border-black">
           <TableHeader className="bg-teal-100 border-b border-black">
             <TableRow className="text-black text-sm">
-              <TableHead className="text-black text-sm p-3">Date</TableHead>
+              <TableHead className="text-black text-sm">Date</TableHead>
               <TableHead className="text-black text-sm">Source</TableHead>
               <TableHead className="text-black text-sm">Location</TableHead>
               <TableHead className="text-black text-sm">Odometer</TableHead>

@@ -41,7 +41,7 @@ const VehicleMileage = ({ data }: Props) => {
         <Table className="border border-black">
           <TableHeader className="bg-teal-100 border-b border-black">
             <TableRow className="text-black text-sm">
-              <TableHead className="text-black text-sm p-3">
+              <TableHead className="text-black text-sm">
                 Date Reported
               </TableHead>
               <TableHead className="text-black text-sm">Mileage</TableHead>
