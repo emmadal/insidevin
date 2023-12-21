@@ -9,8 +9,8 @@ interface Props {
 
 const VehicleUsage = ({ data }: Props) => {
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-4 md:gap-8 mt-20">
+    <div className="w-full mt-10">
+      <div className="grid grid-cols-4 md:gap-8">
         <div className="col-span-3">
           <div className="flex flex-wrap text-xl flex-row items-center font-semibold p-2">
             <Image

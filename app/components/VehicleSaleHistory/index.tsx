@@ -5,8 +5,8 @@ import carCrashed from "@/public/car_crashed.svg";
 
 const VehicleSaleHistory = () => {
   return (
-    <div>
-      <div className="grid grid-cols-4 md:gap-8 mt-20 md:space-x-3">
+    <div className="w-full mt-10">
+      <div className="grid grid-cols-4 md:gap-8 md:space-x-3">
         <div className="col-span-3">
           <div className="flex flex-wrap text-xl flex-row items-center font-semibold p-2">
             <Image

@@ -1,11 +1,17 @@
-import { Fragment, useRef, SetStateAction, Dispatch } from "react";
+import { Fragment, useRef, SetStateAction, Dispatch, Suspense } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import vinCar from "@/public/findvin.jpeg";
 import Image from "next/image";
 
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+const ImageLoading = () => (
+  <div className=" h-9 w-9 rounded-full mx-auto border-t-green-1000 border-4 animate-spin"></div>
+);
+
 export default function ModalVIN({ setOpen, open }: Props) {
   const cancelButtonRef = useRef(null);
   return (
@@ -49,15 +55,15 @@ export default function ModalVIN({ setOpen, open }: Props) {
                       >
                         Where to find VIN?
                       </Dialog.Title>
-                      <div className="mt-2">
+                      <Suspense fallback={<ImageLoading />}>
                         <Image
-                          src="/findvin.jpeg"
-                          alt="findvin"
-                          width={700}
-                          height={700}
-                          priority
+                          src={vinCar}
+                          alt="vinCar"
+                          sizes="100vw"
+                          loading="lazy"
+                          className=" object-cover"
                         />
-                      </div>
+                      </Suspense>
                     </div>
                   </div>
                 </div>

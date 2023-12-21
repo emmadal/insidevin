@@ -10,7 +10,7 @@ import whatsapp from "@/public/whatsapp_solid.svg";
 
 const VehicleSummary = () => {
   return (
-    <div>
+    <div className="sticky top-16">
       <div className="bg-black text-white rounded-sm py-1.5">
         <div className="flex flex-wrap flex-row items-center text-sm font-light p-2">
           <Image
@@ -46,7 +46,7 @@ const VehicleSummary = () => {
           <Image src={twitter} alt="twitter icon" sizes="100vw" />
           <Image src={facebook} alt="facebook icon" sizes="100vw" />
         </div>
-        <DownloadReport  />
+        <DownloadReport />
       </div>
     </div>
   );

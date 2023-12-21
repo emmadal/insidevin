@@ -14,8 +14,8 @@ const VehicleReport = ({
     <div className="border border-black rounded-md bg-stone-50">
       <div className="bg-black text-white py-5 w-full">
         <div className="ml-5">
-          <p className="font-semibold">{car_model}</p>
-          <p className="font-light mt-2 text-xs">VIN: {vin}</p>
+          <p className="font-semibold text-3xl">{car_model}</p>
+          <p className="font-light mt-2 text-xl">VIN: {vin}</p>
         </div>
       </div>
       <div className="space-y-2 md:space-y-0 md:grid grid-cols-3 gap-2 p-5">

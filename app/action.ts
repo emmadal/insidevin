@@ -60,9 +60,10 @@ export const searchVin = async (prevState: any, formData: FormData) => {
     {
       method: "GET",
       cache: "no-store",
-      headers: new Headers({
-        "x-AuthKey": process.env.VEHICLE_API_KEY!,
-      }),
+      headers: {
+        "Content-Type": "application/json",
+        "x-AuthKey": process.env.VEHICLE_API_KEY || "",
+      },
       next: { tags: ["vin"] },
     },
   );
