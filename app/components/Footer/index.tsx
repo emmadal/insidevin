@@ -102,7 +102,7 @@ const Footer = () => {
                     height={8}
                     className="bg-transparent"
                   />{" "}
-                  <Link href="#vin-check">VIN Check</Link>
+                  <Link href="/#vin-check">VIN Check</Link>
                 </li>
                 <li className="flex flex-row items-center text-white text-sm md:hover:underline space-x-2">
                   <Image
