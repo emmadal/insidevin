@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import BackToHome from "./components/BackToHome";
 
 const NotFound = () => {
   return (
@@ -20,12 +20,7 @@ const NotFound = () => {
           </p>
         </div>
       </div>
-      <Link
-        href="/"
-        className="border-none hover:shadow-lg sm:w-auto p-2 px-3 bg-green-950 text-white rounded-md animate-pulse hover:animate-none mt-9"
-      >
-        Back to home
-      </Link>
+      <BackToHome />
     </div>
   );
 };
