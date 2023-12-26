@@ -57,19 +57,41 @@ const SampleReport = () => {
             vin="2T1BURHE0FC320645"
           />
           <VehicleRecord data={vehicle_record} />
-          <VehicleUsage data={vehicle_usage} />
-          <VehicleOwnership data={vehicle_ownership} />
-          <VehicleSaleHistory />
+          <div id="vehicle-usage" className="section_id">
+            <VehicleUsage data={vehicle_usage} />
+          </div>
+          <div id="ownership-history" className="section_id">
+            <VehicleOwnership data={vehicle_ownership} />
+          </div>
+          <div id="sales-history" className="section_id">
+            <VehicleSaleHistory />
+          </div>
           <VehicleInformation data={vehicle_information} />
           <VehicleCondition data={vehicle_condition} />
-          <VehicleBrandCheck data={vehicle_brand_check} />
-          <VehicleEvent data={vehicle_event} />
-          <VehicleMileage data={vehicle_mileage} />
-          <VehicleAccidentRecord data={vehicle_accident} />
-          <VehicleDamage data={vehicle_damage} />
-          <VehicleHistory data={vehicle_history} />
-          <VehicleRepairCost data={vehicle_repair} />
-          <VehicleWarranty data={vehicle_warranty} />
+          <div id="title-brand-check" className="section_id">
+            <VehicleBrandCheck data={vehicle_brand_check} />
+          </div>
+          <div id="event-verification" className="section_id">
+            <VehicleEvent data={vehicle_event} />
+          </div>
+          <div id="mileage-records" className="section_id">
+            <VehicleMileage data={vehicle_mileage} />
+          </div>
+          <div id="accident-records" className="section_id">
+            <VehicleAccidentRecord data={vehicle_accident} />
+          </div>
+          <div id="damage-verification" className="section_id">
+            <VehicleDamage data={vehicle_damage} />
+          </div>
+          <div id="detailed-vehicle-history" className="section_id">
+            <VehicleHistory data={vehicle_history} />
+          </div>
+          <div id="repair-costs" className="section_id">
+            <VehicleRepairCost data={vehicle_repair} />
+          </div>
+          <div id="warranty" className="section_id">
+            <VehicleWarranty data={vehicle_warranty} />
+          </div>
           <Disclaimer />
         </div>
         <div>

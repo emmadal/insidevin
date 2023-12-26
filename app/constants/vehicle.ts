@@ -16,8 +16,6 @@ import {
   VehicleUsageType,
 } from "../types/index";
 
-import { v4 as uuidv4 } from "uuid";
-
 export const vehicle_accident: VehicleAccidentType[] = [
   {
     id: 1,
@@ -216,6 +214,7 @@ export const vehicle_ownership: VehicleOwnerShipType[] = [
     duration: "2 year(s)",
   },
   {
+    id: 5,
     purchased_on: "2015",
     located_in: "OH",
     owned_from: "01/2015 - 01/2017",
@@ -355,48 +354,53 @@ export const vehicle: VehicleReportType = {
 
 export const summary: Summary[] = [
   {
-    id: uuidv4(),
+    first: true,
+    name: "Vehicle Summary",
+    targetRef: "vehicle-summary",
+  },
+  {
     name: "Vehicle Usage History",
+    targetRef: "vehicle-usage",
   },
   {
-    id: uuidv4(),
     name: "Ownership History",
+    targetRef: "ownership-history",
   },
   {
-    id: uuidv4(),
     name: "Sales Listing History",
+    targetRef: "sales-history",
   },
   {
-    id: uuidv4(),
     name: "Title Brand Check",
+    targetRef: "title-brand-check",
   },
   {
-    id: uuidv4(),
     name: "Event Verification",
+    targetRef: "event-verification",
   },
   {
-    id: uuidv4(),
     name: "Mileage Records",
+    targetRef: "mileage-records",
   },
   {
-    id: uuidv4(),
     name: "Accident Records",
+    targetRef: "accident-records",
   },
   {
-    id: uuidv4(),
     name: "Damage Verification",
+    targetRef: "damage-verification",
   },
   {
-    id: uuidv4(),
     name: "Detailed Vehicle History",
+    targetRef: "detailed-vehicle-history",
   },
   {
-    id: uuidv4(),
     name: "Repair Costs",
+    targetRef: "repair-costs",
   },
   {
-    id: uuidv4(),
     name: "Warranty Status/Coverage",
+    targetRef: "warranty",
     last: true,
   },
 ];

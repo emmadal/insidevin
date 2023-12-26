@@ -4,7 +4,7 @@ import React from "react";
 const WhyInside = () => {
   return (
     <div
-      className="md:px-8 mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 mt-10 md:mt-8"
+      className="md:px-8 mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 mt-10 md:mt-8 section_id"
       id="vin-check"
     >
       <div className="text-center mb-10">

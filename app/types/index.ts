@@ -1,7 +1,8 @@
 export type Summary = {
-  id?: number | string;
   name: string;
+  first?: boolean;
   last?: boolean;
+  targetRef?: string;
 };
 
 export type VehicleReportType = {

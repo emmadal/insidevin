@@ -26,3 +26,8 @@ hr{
     @apply scroll-smooth;
   }
 }
+
+.section_id {
+  scroll-margin-top: 10vh;
+  scroll-behavior: smooth;
+}

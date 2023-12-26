@@ -19,7 +19,7 @@ const VehicleRecord = ({ data }: { data: VehicleRecordType[] }) => {
           </div>
         </div>
         <div className="bg-teal-100 rounded-md p-1 flex flex-col justify-center text-center">
-          4 record(s) found
+          {data.filter((i) => i.isrecord === true).length} record(s) found
         </div>
       </div>
       <p className="ml-3 text-sm mt-2">

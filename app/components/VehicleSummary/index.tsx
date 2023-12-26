@@ -7,33 +7,30 @@ import DownloadReport from "../DownloadReport";
 import facebook from "@/public/facebook_solid.svg";
 import twitter from "@/public/twitter_solid.svg";
 import whatsapp from "@/public/whatsapp_solid.svg";
+import Link from "next/link";
 
 const VehicleSummary = () => {
   return (
     <div className="sticky top-16">
-      <div className="bg-black text-white rounded-sm py-1.5">
-        <div className="flex flex-wrap flex-row items-center text-sm font-light p-2">
-          <Image
-            src={Whiteclipboard}
-            alt="clipboard-text"
-            className="mr-2 h-5 w-5"
-            sizes="100vw"
-          />
-          Vehicle Summary
-        </div>
-      </div>
       <div className="bg-teal-100 h-auto rounded-sm flex flex-row flex-wrap md:block">
         {summary.map((item) => (
-          <div key={item.id}>
-            <div className="flex flex-wrap flex-row items-center text-sm font-light p-2.5">
+          <div key={item.name}>
+            <Link
+              href={`/sample-report#${item?.targetRef}`}
+              className={
+                item.first
+                  ? "flex flex-wrap flex-row items-center text-sm font-light p-2.5 text-white bg-green-1000 a"
+                  : "flex flex-wrap flex-row items-center text-sm font-light p-2.5 hover:bg-green-1000 hover:text-white"
+              }
+            >
               <Image
-                src={clipboard}
+                src={item.first ? Whiteclipboard : clipboard}
                 alt="clipboard-text"
-                className="mr-2 h-5 w-5"
+                className="mr-2 h-5 w-5 hover:hidden"
                 sizes="100vw"
               />
               {item.name}
-            </div>
+            </Link>
             {item?.last ? null : (
               <hr className="hidden md:block w-full bg-black opacity-25" />
             )}
