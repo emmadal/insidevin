@@ -19,14 +19,14 @@ const VehicleSummary = () => {
               href={`/sample-report#${item?.targetRef}`}
               className={
                 item.first
-                  ? "flex flex-wrap flex-row items-center text-sm font-light p-2.5 text-white bg-green-1000 a"
-                  : "flex flex-wrap flex-row items-center text-sm font-light p-2.5 hover:bg-green-1000 hover:text-white"
+                  ? "flex flex-wrap flex-row items-center text-sm font-light p-2.5 text-white bg-green-1000 overflow-hidden"
+                  : "flex flex-wrap flex-row items-center text-sm font-light p-2.5"
               }
             >
               <Image
                 src={item.first ? Whiteclipboard : clipboard}
                 alt="clipboard-text"
-                className="mr-2 h-5 w-5 hover:hidden"
+                className="mr-2 h-5 w-5 hover:stroke-white hover:fill-white"
                 sizes="100vw"
               />
               {item.name}
