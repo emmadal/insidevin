@@ -7,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Spinner from "../Spinner";
 import { searchVin } from "@/app/action";
-import { redirect } from "next/navigation";
 const ModalVIN = dynamic(() => import("../ModalVin"));
 
 const SubmitForm = memo(function SubmitForm() {
@@ -41,8 +40,6 @@ const SearchVin = () => {
   const [open, setOpen] = useState(false);
   const [response, formAction] = useFormState(searchVin, null);
   const ref = useRef<HTMLFormElement>(null);
-  if (response?.status) redirect(`reports/${response?.vin}`);
-
   return (
     <div className="mt-10 md:mt-10">
       {open && <ModalVIN open={open} setOpen={setOpen} />}

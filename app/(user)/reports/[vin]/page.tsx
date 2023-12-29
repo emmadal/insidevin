@@ -4,20 +4,22 @@ import CardReportResume from "@/app/components/CardReportResume";
 import CardReportFull from "@/app/components/CardReportFull";
 import SubmitButton from "@/app/components/FormButton";
 import TextInput from "@/app/components/TextInput";
-import { reportForm, searchVin } from "@/app/action";
+import { reportForm } from "@/app/action";
 import carImage from "@/public/car.png";
 import NoData from "@/app/components/NoData";
 import ReportLoading from "@/app/components/ReportLoading";
+import { cookies } from "next/headers";
+
 interface Props {
   params: { vin: string };
 }
 
-const ReportsPage = async ({ params: { vin } }: Props) => {
-  const formData = new FormData();
-  formData.set("vin", vin);
-  const data = await searchVin(null, formData);
-  if (!data?.status) return <NoData vin={vin} />;
-
+const ReportsPage = ({ params: { vin } }: Props) => {
+  const sales = cookies().has("sales_history");
+  if (!sales) return <NoData vin={vin} />;
+  const sales_history: any = cookies().get("sales_history");
+  const data = JSON.parse(sales_history?.value);
+  
   return (
     <div>
       <Suspense fallback={<ReportLoading />}>
@@ -61,7 +63,14 @@ const ReportsPage = async ({ params: { vin } }: Props) => {
 
           <div className="md:grid grid-cols-3 gap-5 space-y-10 md:space-y-0">
             <div>
-              <CardReportResume vin={vin} />
+              <CardReportResume
+                vin={data?.vin ?? "Not found"}
+                brand={data?.make ?? "Not found"}
+                style={data?.model ?? "Not found"}
+                engine={data?.sales_history[0]?.data?.engine ?? "Not found"}
+                trim={data?.trim ?? "Not found"}
+                msrp={data?.msrp ?? "Not found"}
+              />
             </div>
             <div className="col-span-2 w-full">
               <CardReportFull />

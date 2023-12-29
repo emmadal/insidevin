@@ -11,8 +11,10 @@ import { firestore } from "firebase-admin";
 import * as bcrypt from "bcrypt";
 import { revalidateTag } from "next/cache";
 import * as jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 import { transporter, mailOptions } from "@/lib/mail-sender";
 import ResetPasswordTemplate from "@/emails/ResetPasswordTemplate";
+import { redirect } from "next/navigation";
 
 /**
  * Search user by email
@@ -56,20 +58,32 @@ export const searchVin = async (prevState: any, formData: FormData) => {
     return { message: validation.error.errors[0].message };
   }
   const response = await fetch(
-    `https://api.vehicledatabases.com/auction/${validation.data.vin}`,
+    `https://api.vehicledatabases.com/saleshistory/${validation.data.vin}`,
     {
       method: "GET",
       cache: "no-store",
       headers: new Headers({
-        "x-AuthKey": process.env.VEHICLE_API_KEY || "",
+        "x-AuthKey": process.env.VEHICLE_SALES_HISTORY || "",
       }),
       next: { tags: ["vin"] },
     },
   );
   if (response.ok) {
     const data = await response.json();
+    await firestore()
+      .collection("sales_history")
+      .add({
+        ...data?.data,
+      });
+    // Set cookie
+    cookies().set("sales_history", JSON.stringify(data?.data), {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 60 * 2, // expires in  2 min
+    });
     revalidateTag("vin");
-    return { status: true, vin: validation.data.vin, data };
+    redirect(`reports/${validation.data.vin}`);
   }
   return { status: false, message: "No data available" };
 };

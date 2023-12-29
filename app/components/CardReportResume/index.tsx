@@ -32,7 +32,9 @@ const CardReportResume = async (props: IPropsCar) => {
           <Image src={trim} alt="trim" />
           <span className="text-gray-500 inline-flex items-center">
             <span className="text-sm">Trim:</span>{" "}
-            <p className="font-semibold text-sm ml-3">{props.trim}</p>
+            <p className="font-semibold text-sm ml-3 text-black">
+              {props.trim}
+            </p>
           </span>
         </div>
         <hr />
