@@ -4,6 +4,7 @@ import ProfileCard from "@/app/components/ProfileCard.tsx";
 import { columns } from "@/app/components/table/columns";
 import { DataTable } from "@/app/components/table/data-table";
 import { getServerSession } from "next-auth";
+import LogoutButton from "@/app/components/ProfileCard.tsx/logout-button";
 
 const DashboardPage = async () => {
   const session = await getServerSession();
@@ -24,7 +25,7 @@ const DashboardPage = async () => {
           <DataTable columns={columns} data={data} />
         </div>
       </div>
-      <div className="hidden md:block">
+      <div>
         <ProfileCard />
       </div>
     </div>
