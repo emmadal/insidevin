@@ -60,7 +60,9 @@ const CardReportResume = async (props: IPropsCar) => {
           <Image src={msrp} alt="msrp" />
           <span className="text-gray-500 inline-flex items-center">
             <span className="text-sm">MRSP:</span>{" "}
-            <p className="font-semibold text-black ml-3">{props.msrp}</p>
+            <p className="font-semibold text-sm ml-3 text-black">
+              {props.msrp}
+            </p>
           </span>
         </div>
       </CardContent>

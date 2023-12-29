@@ -7,7 +7,6 @@ import Image from "next/image";
 // You can use a Zod schema here if you want.
 export type Report = {
   id?: string;
-  name: string;
   brand: string;
   model: string;
   year: string;
@@ -17,10 +16,10 @@ export type Report = {
 };
 
 export const columns: ColumnDef<Report>[] = [
-  {
-    accessorKey: "name",
-    header: "NAME",
-  },
+  // {
+  //   accessorKey: "name",
+  //   header: "NAME",
+  // },
   {
     accessorKey: "brand",
     header: "BRAND",

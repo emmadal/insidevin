@@ -54,6 +54,9 @@ export const searchVin = async (prevState: any, formData: FormData) => {
   const validation = vinSchema.safeParse({
     vin: formData.get("vin"),
   });
+  // get user session
+  const userFormData: any = formData.get("session");
+  const session = JSON.parse(userFormData);
   if (!validation.success) {
     return { message: validation.error.errors[0].message };
   }
@@ -70,18 +73,25 @@ export const searchVin = async (prevState: any, formData: FormData) => {
   );
   if (response.ok) {
     const data = await response.json();
-    await firestore()
-      .collection("sales_history")
-      .add({
-        ...data?.data,
-      });
     // Set cookie
     cookies().set("sales_history", JSON.stringify(data?.data), {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
       sameSite: "lax",
-      maxAge: 60 * 2, // expires in  2 min
+      maxAge: 60, // expires after 1 min
     });
+    if (session?.user) {
+      const { _id, make, ...rest } = data?.data;
+      await firestore()
+        .collection("sales_history")
+        .add({
+          ...rest,
+          brand: make,
+          user_email: session?.user?.email,
+          user_id: session?.user?.id,
+          id: _id,
+        });
+    }
     revalidateTag("vin");
     redirect(`reports/${validation.data.vin}`);
   }
@@ -243,4 +253,19 @@ export const updateUserPassword = async (
     };
   }
   return { status: false, message: "Unable to reset your password. Try later" };
+};
+
+/**
+ * Get data by user email user
+ */
+export const getAllDataByUserEmail = async (
+  collection: string,
+  email: string | null,
+) => {
+  const data = await firestore()
+    .collection(collection)
+    .where("user_email", "==", email)
+    .get();
+  const response = data.docs.map((e) => e.data());
+  return response;
 };

@@ -1,14 +1,18 @@
-import ProfileCard from "@/app/components/ProfileCard.tsx";
-import { Report, columns } from "@/app/components/table/columns";
-import { DataTable } from "@/app/components/table/data-table";
 import React from "react";
+import { getAllDataByUserEmail } from "@/app/action";
+import ProfileCard from "@/app/components/ProfileCard.tsx";
+import { columns } from "@/app/components/table/columns";
+import { DataTable } from "@/app/components/table/data-table";
+import { getServerSession } from "next-auth";
 
-async function getData(): Promise<Report[]> {
-  // Fetch data from your API here.
-  return [];
-}
 const DashboardPage = async () => {
-  const data = await getData();
+  const session = await getServerSession();
+
+  const data: any = await getAllDataByUserEmail(
+    "sales_history",
+    session?.user?.email || null,
+  );
+
   return (
     <div className="md:grid grid-cols-4 gap-3 space-x-3">
       <div className="col-span-3">

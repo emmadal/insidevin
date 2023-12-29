@@ -1,5 +1,4 @@
 "use client";
-
 import React, { memo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useFormState, useFormStatus } from "react-dom";
@@ -7,8 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Spinner from "../Spinner";
 import { searchVin } from "@/app/action";
-const ModalVIN = dynamic(() => import("../ModalVin"));
+import { useSession } from "next-auth/react";
 
+const ModalVIN = dynamic(() => import("../ModalVin"));
 const SubmitForm = memo(function SubmitForm() {
   const { pending } = useFormStatus();
   return (
@@ -38,6 +38,7 @@ const SubmitForm = memo(function SubmitForm() {
 
 const SearchVin = () => {
   const [open, setOpen] = useState(false);
+  const { data } = useSession();
   const [response, formAction] = useFormState(searchVin, null);
   const ref = useRef<HTMLFormElement>(null);
   return (
@@ -45,7 +46,10 @@ const SearchVin = () => {
       {open && <ModalVIN open={open} setOpen={setOpen} />}
       <form
         ref={ref}
-        action={formAction}
+        action={(payload) => {
+          payload.append("session", JSON.stringify(data));
+          formAction(payload);
+        }}
         className="border-2 border-neutral-50 p-3 shadow-lg w-full flex flex-row space-x-5 rounded-xl"
       >
         <input

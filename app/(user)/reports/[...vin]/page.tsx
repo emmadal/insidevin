@@ -14,12 +14,12 @@ interface Props {
   params: { vin: string };
 }
 
-const ReportsPage = ({ params: { vin } }: Props) => {
+const ReportsPage = async ({ params: { vin } }: Props) => {
   const sales = cookies().has("sales_history");
   if (!sales) return <NoData vin={vin} />;
   const sales_history: any = cookies().get("sales_history");
   const data = JSON.parse(sales_history?.value);
-  
+
   return (
     <div>
       <Suspense fallback={<ReportLoading />}>
@@ -64,12 +64,12 @@ const ReportsPage = ({ params: { vin } }: Props) => {
           <div className="md:grid grid-cols-3 gap-5 space-y-10 md:space-y-0">
             <div>
               <CardReportResume
-                vin={data?.vin ?? "Not found"}
-                brand={data?.make ?? "Not found"}
-                style={data?.model ?? "Not found"}
-                engine={data?.sales_history[0]?.data?.engine ?? "Not found"}
-                trim={data?.trim ?? "Not found"}
-                msrp={data?.msrp ?? "Not found"}
+                vin={data?.vin || "Not found"}
+                brand={data?.make || "Not found"}
+                style={data?.model || "Not found"}
+                engine={data?.sales_history[0]?.data?.engine || "Not found"}
+                trim={data?.trim || "Not found"}
+                msrp={data?.msrp || "Not found"}
               />
             </div>
             <div className="col-span-2 w-full">
