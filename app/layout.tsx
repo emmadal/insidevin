@@ -8,6 +8,8 @@ import TopScroll from "./components/TopScroll";
 import AuthProvider from "./session-provider/provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authoptions";
+import { Analytics } from "@vercel/analytics/react";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,6 +54,7 @@ export default async function RootLayout({
           </div>
           <Footer />
         </AuthProvider>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
