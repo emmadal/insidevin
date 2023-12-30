@@ -73,14 +73,14 @@ export const searchVin = async (prevState: any, formData: FormData) => {
   );
   if (response.ok) {
     const data = await response.json();
-    // Set cookie
-    cookies().set("sales_history", JSON.stringify(data?.data), {
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 60, // expires after 1 min
-    });
     if (session?.user) {
+      // Set cookie
+      cookies().set("sales_history", JSON.stringify(data?.data), {
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        sameSite: "lax",
+        // maxAge: 60 * 5, // expires after 2 min
+      });
       const { _id, make, ...rest } = data?.data;
       await firestore()
         .collection("sales_history")
@@ -150,10 +150,6 @@ export const createUser = async (prevState: any, formData: FormData) => {
     console.log(error);
     return { message: "User registration failed. Try later" };
   }
-};
-
-export const reportForm = (formData: FormData) => {
-  console.log(formData.get("email"));
 };
 
 /**
@@ -268,4 +264,16 @@ export const getAllDataByUserEmail = async (
     .get();
   const response = data.docs.map((e) => e.data());
   return response;
+};
+
+/**
+ * Save data into collection
+ */
+export const saveData = async (collection: string, data: any) => {
+  try {
+    await firestore().collection(collection).add(data);
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
